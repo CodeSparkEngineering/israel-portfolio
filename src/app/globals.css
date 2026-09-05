@@ -1,0 +1,29 @@
+@import 'tailwindcss';
+
+@theme inline {
+  --font-sans: var(--font-kanit), sans-serif;
+  --color-ink: #0c0c0c;
+  --color-mist: #d7e2ea;
+}
+
+/*
+ * No custom reset here: Tailwind v4 preflight already zeroes margin/padding and
+ * sets box-sizing. An unlayered `* { margin: 0; padding: 0 }` would override every
+ * Tailwind spacing utility (px-*, mt-*, mx-auto...) because unlayered CSS beats layers.
+ */
+
+html,
+body {
+  background: #0c0c0c;
+  font-family: var(--font-kanit), sans-serif;
+}
+
+/* Big display headings: light silver into the brand magenta and orange, with a soft glow. */
+.hero-heading {
+  background: linear-gradient(112deg, #f4f7fa 0%, #d7e2ea 30%, #b600a8 64%, #ff7a1a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  filter: drop-shadow(0 0 28px rgba(182, 0, 168, 0.28));
+}
