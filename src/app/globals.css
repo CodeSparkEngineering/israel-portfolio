@@ -25,5 +25,11 @@ body {
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
-  filter: drop-shadow(0 0 28px rgba(182, 0, 168, 0.28));
+}
+
+/* Glow only on large screens: `filter` on background-clip:text text is buggy on iOS Safari. */
+@media (min-width: 1024px) {
+  .hero-heading {
+    filter: drop-shadow(0 0 28px rgba(182, 0, 168, 0.28));
+  }
 }
