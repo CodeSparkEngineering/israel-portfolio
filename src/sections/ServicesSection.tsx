@@ -1,9 +1,18 @@
 import Link from 'next/link'
 import FadeIn from '@/components/FadeIn'
+import { ADS_PATH } from '@/data/ads'
 import { GOOGLE_SKILLS_BADGES, GOOGLE_SKILLS_URL } from '@/data/credentials'
 import { SECURITY_PATH } from '@/data/security'
 import type { Locale } from '@/i18n/config'
 import type { Dictionary } from '@/i18n/get-dictionary'
+
+type ServiceLinkKey = keyof Dictionary['services']['links']
+
+/** Services that link to a dedicated page, by their number. */
+const SERVICE_LINKS: Record<string, { path: string; key: ServiceLinkKey }> = {
+  '06': { path: ADS_PATH, key: 'ads' },
+  '07': { path: SECURITY_PATH, key: 'security' },
+}
 
 type ServicesSectionProps = { locale: Locale; dict: Dictionary }
 
@@ -27,7 +36,9 @@ export default function ServicesSection({ locale, dict }: ServicesSectionProps) 
       </FadeIn>
 
       <div className="max-w-5xl mx-auto">
-        {services.items.map((service, i) => (
+        {services.items.map((service, i) => {
+          const link = SERVICE_LINKS[service.number]
+          return (
           <FadeIn
             key={service.number}
             delay={i * 0.1}
@@ -63,19 +74,20 @@ export default function ServicesSection({ locale, dict }: ServicesSectionProps) 
               >
                 {service.description}
               </p>
-              {/* service 07 links to the anonymized security case studies */}
-              {service.number === services.examples.number && (
+              {/* services 06 and 07 link to their dedicated results pages */}
+              {link && (
                 <Link
-                  href={`/${locale}${SECURITY_PATH}`}
+                  href={`/${locale}${link.path}`}
                   className="mt-1 py-3 -mb-3 inline-block w-fit font-medium uppercase tracking-widest text-xs sm:text-sm underline underline-offset-4 transition-opacity duration-200 hover:opacity-60"
                   style={{ color: '#0C0C0C' }}
                 >
-                  {services.examples.label} →
+                  {services.links[link.key]} →
                 </Link>
               )}
             </div>
           </FadeIn>
-        ))}
+          )
+        })}
       </div>
 
       {/* Google Cloud badges: real credentials, linked to the public profile */}

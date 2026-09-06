@@ -92,7 +92,10 @@ const pt: Dictionary = {
           'Implantação no Google Cloud (GCP), redes seguras, controle de acesso, backups e revisão de segurança dos seus sistemas.',
       },
     ],
-    examples: { number: '07', label: 'Ver exemplos de avaliações de segurança' },
+    links: {
+      ads: 'Ver resultados de campanhas',
+      security: 'Ver exemplos de avaliações de segurança',
+    },
   },
   credentials: {
     title: 'Formação e badges Google Cloud',
@@ -193,6 +196,37 @@ const pt: Dictionary = {
         delivered:
           'Relatório de 6 páginas com correção de DMARC e SPF para impedir spoofing de e-mail, hardening do PKCE e roadmap cobrindo IDOR multi-tenant, autorização por ferramenta no MCP e injeção de prompt no agente de IA.',
       },
+    },
+  },
+  ads: {
+    title: 'Google Ads',
+    intro:
+      'Campanha real de Google Ads que eu configuro e faço a gestão para a SparkLab, a minha marca de impressão 3D em Portugal: estratégia de palavras-chave, anúncios, segmentação e otimização contínua para trazer pedidos de orçamento com baixo custo por lead.',
+    period: 'Últimos 30 dias',
+    note: 'Capturas reais da conta; dados pessoais removidos.',
+    back: 'Voltar aos serviços',
+    meta: {
+      title: 'Resultados de Google Ads | Israel Vieira',
+      description:
+        'Resultados reais de uma campanha de Google Ads gerida por Israel Vieira para a marca SparkLab: investimento, impressões, cliques, conversões e custo por lead, com capturas do painel.',
+    },
+    stats: [
+      { value: '€62', label: 'Investido' },
+      { value: '12,7 mil', label: 'Impressões' },
+      { value: '267', label: 'Cliques' },
+      { value: '30', label: 'Conversões' },
+    ],
+    highlights: [
+      'CPC médio de €0,23',
+      'Custo por conversão de €2,08',
+      'Taxa de conversão de 11%',
+    ],
+    shots: {
+      overview: 'Visão geral: investimento, impressões, cliques e conversões da campanha.',
+      conversions: 'Conversões: 22 pedidos de orçamento por WhatsApp e 8 pelo site.',
+      impressions: 'Impressões e alcance diário ao longo do período.',
+      searchTerms: 'Termos de busca que trouxeram cliques e o anúncio exibido.',
+      locationBudget: 'Segmentação por Portugal e orçamento diário controlado.',
     },
   },
   faq: {

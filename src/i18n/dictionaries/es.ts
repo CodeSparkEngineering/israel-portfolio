@@ -92,7 +92,10 @@ const es: Dictionary = {
           'Despliegues en Google Cloud (GCP), redes seguras, control de acceso, copias de seguridad y revisión de seguridad de tus sistemas.',
       },
     ],
-    examples: { number: '07', label: 'Ver ejemplos de evaluaciones de seguridad' },
+    links: {
+      ads: 'Ver resultados de campañas',
+      security: 'Ver ejemplos de evaluaciones de seguridad',
+    },
   },
   credentials: {
     title: 'Formación e insignias Google Cloud',
@@ -193,6 +196,37 @@ const es: Dictionary = {
         delivered:
           'Informe de 6 páginas con corrección de DMARC y SPF para impedir la suplantación de correo, hardening de PKCE y hoja de ruta que cubre IDOR multi-tenant, autorización por herramienta en MCP e inyección de prompt en el agente de IA.',
       },
+    },
+  },
+  ads: {
+    title: 'Google Ads',
+    intro:
+      'Campaña real de Google Ads que configuro y gestiono para SparkLab, mi propia marca de impresión 3D en Portugal: estrategia de palabras clave, anuncios, segmentación y optimización continua para traer solicitudes de presupuesto con bajo coste por lead.',
+    period: 'Últimos 30 días',
+    note: 'Capturas reales de la cuenta; datos personales eliminados.',
+    back: 'Volver a los servicios',
+    meta: {
+      title: 'Resultados de Google Ads | Israel Vieira',
+      description:
+        'Resultados reales de una campaña de Google Ads gestionada por Israel Vieira para la marca SparkLab: inversión, impresiones, clics, conversiones y coste por lead, con capturas del panel.',
+    },
+    stats: [
+      { value: '€62', label: 'Invertido' },
+      { value: '12,7 mil', label: 'Impresiones' },
+      { value: '267', label: 'Clics' },
+      { value: '30', label: 'Conversiones' },
+    ],
+    highlights: [
+      'CPC medio de €0,23',
+      'Coste por conversión de €2,08',
+      'Tasa de conversión del 11%',
+    ],
+    shots: {
+      overview: 'Visión general: inversión, impresiones, clics y conversiones de la campaña.',
+      conversions: 'Conversiones: 22 solicitudes de presupuesto por WhatsApp y 8 desde la web.',
+      impressions: 'Impresiones y alcance diario a lo largo del periodo.',
+      searchTerms: 'Términos de búsqueda que trajeron clics y el anuncio mostrado.',
+      locationBudget: 'Segmentación por Portugal y presupuesto diario controlado.',
     },
   },
   faq: {

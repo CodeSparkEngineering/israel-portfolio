@@ -94,8 +94,11 @@ const en = {
           'Deployments on Google Cloud (GCP), secure networks, access control, backups and security reviews for your systems.',
       },
     ],
-    /** "See examples" link shown under one service (by number); it opens the security page. */
-    examples: { number: '07', label: 'See examples of security assessments' },
+    /** Links shown under a service (by number); each opens that service's page. */
+    links: {
+      ads: 'See campaign results',
+      security: 'See examples of security assessments',
+    },
   },
   credentials: {
     title: 'Google Cloud training & badges',
@@ -196,6 +199,37 @@ const en = {
         delivered:
           '6-page report with a DMARC and SPF fix to stop e-mail spoofing, PKCE hardening, and a roadmap covering multi-tenant IDOR, per-tool MCP authorization and prompt injection in the AI agent.',
       },
+    },
+  },
+  ads: {
+    title: 'Google Ads',
+    intro:
+      'A real Google Ads campaign I set up and manage for SparkLab, my own 3D printing brand in Portugal: keyword strategy, ads, targeting and ongoing optimization to bring quote requests at a low cost per lead.',
+    period: 'Last 30 days',
+    note: 'Real screenshots from the account; personal data removed.',
+    back: 'Back to services',
+    meta: {
+      title: 'Google Ads results | Israel Vieira',
+      description:
+        'Real results of a Google Ads campaign managed by Israel Vieira for the SparkLab brand: spend, impressions, clicks, conversions and cost per lead, with dashboard screenshots.',
+    },
+    stats: [
+      { value: '€62', label: 'Invested' },
+      { value: '12.7k', label: 'Impressions' },
+      { value: '267', label: 'Clicks' },
+      { value: '30', label: 'Conversions' },
+    ],
+    highlights: [
+      '€0.23 average cost per click',
+      '€2.08 cost per conversion',
+      '11% conversion rate',
+    ],
+    shots: {
+      overview: 'Overview: campaign spend, impressions, clicks and conversions.',
+      conversions: 'Conversions: 22 WhatsApp quote requests and 8 from the website.',
+      impressions: 'Impressions and daily reach over the period.',
+      searchTerms: 'Search terms that brought clicks and the ad shown.',
+      locationBudget: 'Targeting across Portugal and a controlled daily budget.',
     },
   },
   faq: {
