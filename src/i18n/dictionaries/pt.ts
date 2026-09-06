@@ -228,16 +228,35 @@ const pt: Dictionary = {
       searchTerms: 'Termos de busca que trouxeram cliques e o anúncio exibido.',
       locationBudget: 'Segmentação por Portugal e orçamento diário controlado.',
     },
-    testimonials: {
-      heading: 'Clientes que nos encontraram no Google',
-      items: [
-        { quote: 'Pelo Google, estava em primeiro lugar.', who: 'Cliente · Portugal' },
-        { quote: 'Encontrei a vossa empresa pelo Google.', who: 'Cliente · Portugal' },
-      ],
+    sections: {
+      metrics: 'Resultados',
+      dashboard: 'Painel da campanha',
+      clients: 'Como os clientes nos encontram',
     },
-    proof: {
-      google: 'Conversa real: o cliente respondeu que nos encontrou pelo Google, em primeiro lugar.',
-      found: 'Outro cliente respondeu que chegou pelo Google.',
+    tabs: {
+      overview: 'Visão geral',
+      conversions: 'Conversões',
+      impressions: 'Impressões',
+      searchTerms: 'Termos de busca',
+      locationBudget: 'Segmentação e orçamento',
+    },
+    tabsLabel: 'Capturas do painel da campanha',
+    testimonials: {
+      google: {
+        quote: 'Pelo Google, estava em primeiro lugar.',
+        who: 'Cliente · Portugal',
+        caption: 'Conversa real: o cliente respondeu que nos encontrou pelo Google, em primeiro lugar.',
+      },
+      found: {
+        quote: 'Encontrei a vossa empresa pelo Google.',
+        who: 'Cliente · Portugal',
+        caption: 'Conversa real: outro cliente respondeu que chegou pelo Google.',
+      },
+      ai: {
+        quote: 'Andava à procura de uma empresa como a vossa e foi a que me foi recomendada pelo ChatGPT.',
+        who: 'Cliente · Portugal',
+        caption: 'Conversa real: este cliente chegou por recomendação do ChatGPT.',
+      },
     },
   },
   faq: {

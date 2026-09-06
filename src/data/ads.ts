@@ -6,6 +6,7 @@ import searchTerms from '@/assets/ads/ads-search-terms.webp'
 import locationBudget from '@/assets/ads/ads-location-budget.webp'
 import proofGoogle from '@/assets/ads/ads-proof-google.webp'
 import proofFound from '@/assets/ads/ads-proof-found.webp'
+import proofAi from '@/assets/ads/ads-proof-ai.webp'
 
 export type AdShotKey =
   | 'overview'
@@ -16,7 +17,7 @@ export type AdShotKey =
 
 export type AdShot = { key: AdShotKey; image: StaticImageData }
 
-export type AdProofKey = 'google' | 'found'
+export type AdProofKey = 'google' | 'found' | 'ai'
 export type AdProof = { key: AdProofKey; image: StaticImageData }
 
 /** Path of the Google Ads results page under each locale: /en/ads, /pt/ads, /es/ads. */
@@ -36,9 +37,11 @@ export const AD_SHOTS: AdShot[] = [
 
 /**
  * Real client WhatsApp chats used as social proof, redacted for privacy: the payment
- * receipt is cropped out and the client name is covered. Captions in the dictionaries.
+ * receipt is cropped out of one, the client name is covered in another, and the third
+ * never showed a name. Quotes and captions live in the dictionaries.
  */
 export const AD_PROOF: AdProof[] = [
   { key: 'google', image: proofGoogle },
   { key: 'found', image: proofFound },
+  { key: 'ai', image: proofAi },
 ]

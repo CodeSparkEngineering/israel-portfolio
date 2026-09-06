@@ -231,16 +231,35 @@ const en = {
       searchTerms: 'Search terms that brought clicks and the ad shown.',
       locationBudget: 'Targeting across Portugal and a controlled daily budget.',
     },
-    testimonials: {
-      heading: 'Clients who found us on Google',
-      items: [
-        { quote: 'Found you on Google, you were in first place.', who: 'Client · Portugal' },
-        { quote: 'I found your company through Google.', who: 'Client · Portugal' },
-      ],
+    sections: {
+      metrics: 'Results',
+      dashboard: 'Campaign dashboard',
+      clients: 'How clients find us',
     },
-    proof: {
-      google: 'Real chat: the client replied they found us on Google, in first place.',
-      found: 'Another client answered that they arrived through Google.',
+    tabs: {
+      overview: 'Overview',
+      conversions: 'Conversions',
+      impressions: 'Impressions',
+      searchTerms: 'Search terms',
+      locationBudget: 'Targeting & budget',
+    },
+    tabsLabel: 'Campaign dashboard screenshots',
+    testimonials: {
+      google: {
+        quote: 'Found you on Google, you were in first place.',
+        who: 'Client · Portugal',
+        caption: 'Real chat: the client replied they found us on Google, in first place.',
+      },
+      found: {
+        quote: 'I found your company through Google.',
+        who: 'Client · Portugal',
+        caption: 'Real chat: another client answered that they arrived through Google.',
+      },
+      ai: {
+        quote: 'I was looking for a company like yours, and yours was the one ChatGPT recommended.',
+        who: 'Client · Portugal',
+        caption: 'Real chat: this client arrived through a ChatGPT recommendation.',
+      },
     },
   },
   faq: {

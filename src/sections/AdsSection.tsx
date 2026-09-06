@@ -1,5 +1,7 @@
 import Image from 'next/image'
 import FadeIn from '@/components/FadeIn'
+import CountUp from '@/components/CountUp'
+import DashboardTabs from '@/components/DashboardTabs'
 import ContactButton from '@/components/ContactButton'
 import { WHATSAPP_URL } from '@/data/contact'
 import { AD_PROOF, AD_SHOTS } from '@/data/ads'
@@ -11,13 +13,34 @@ type AdsSectionProps = {
   headingTag?: 'h1' | 'h2'
 }
 
+type EyebrowProps = { children: string; as: 'h2' | 'h3' }
+
+/** Small centered label with a short brand-colored rule, opening each block. */
+function Eyebrow({ children, as: Tag }: EyebrowProps) {
+  return (
+    <div className="flex flex-col items-center gap-3">
+      <span
+        aria-hidden
+        className="h-px w-10"
+        style={{ background: 'linear-gradient(90deg, #B600A8, #FF7A1A)' }}
+      />
+      <Tag className="text-[#D7E2EA]/60 font-medium uppercase tracking-widest text-xs sm:text-sm text-center">
+        {children}
+      </Tag>
+    </div>
+  )
+}
+
+const CARD = 'rounded-3xl border border-[#D7E2EA]/15 bg-[#D7E2EA]/[0.03]'
+
 /**
- * Real results of an authorized Google Ads campaign (own brand SparkLab), shown as
- * headline metrics plus the cropped dashboard screenshots. Numbers and captions come
- * from the dictionaries.
+ * Real results of a Google Ads campaign (own brand SparkLab) in three blocks: headline
+ * metrics that count up, the dashboard screenshots behind tabs, and the client chats
+ * that show how they found us. Numbers and texts come from the dictionaries.
  */
 export default function AdsSection({ dict, headingTag = 'h2' }: AdsSectionProps) {
   const { ads, buttons } = dict
+  const blockTag = headingTag === 'h1' ? 'h2' : 'h3'
 
   return (
     <section
@@ -45,113 +68,127 @@ export default function AdsSection({ dict, headingTag = 'h2' }: AdsSectionProps)
         {ads.intro}
       </FadeIn>
 
-      <div className="max-w-5xl mx-auto mt-4 text-center">
-        <span className="text-[#D7E2EA]/50 font-light uppercase tracking-widest text-xs sm:text-sm">
-          {ads.period}
-        </span>
-      </div>
+      <FadeIn
+        as="p"
+        delay={0.18}
+        y={16}
+        className="mt-4 text-center text-[#D7E2EA]/50 font-light uppercase tracking-widest text-xs sm:text-sm"
+      >
+        {ads.period}
+      </FadeIn>
 
-      {/* headline metrics */}
-      <dl className="max-w-5xl mx-auto mt-12 sm:mt-14 grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
-        {ads.stats.map((stat) => (
-          <div
-            key={stat.label}
-            className="flex flex-col-reverse rounded-3xl border border-[#D7E2EA]/15 px-5 py-6 sm:px-6 sm:py-7 text-center"
-          >
-            <dt className="mt-2 text-[#D7E2EA]/60 font-light uppercase tracking-widest text-[0.65rem] sm:text-xs">
-              {stat.label}
-            </dt>
-            <dd
-              className="hero-heading font-black leading-none"
-              style={{ fontSize: 'clamp(2.2rem, 5vw, 4rem)' }}
-            >
-              {stat.value}
-            </dd>
-          </div>
-        ))}
-      </dl>
-
-      {/* efficiency highlights */}
-      <ul className="max-w-5xl mx-auto mt-4 flex flex-wrap justify-center gap-2 sm:gap-3">
-        {ads.highlights.map((item) => (
-          <li
-            key={item}
-            className="rounded-full border border-[#D7E2EA]/20 px-4 py-2 text-[#D7E2EA]/85 text-xs sm:text-sm font-medium"
-          >
-            {item}
-          </li>
-        ))}
-      </ul>
-
-      {/* dashboard screenshots */}
-      <div className="max-w-5xl mx-auto mt-14 sm:mt-16 md:mt-20 flex flex-col gap-10 sm:gap-14">
-        {AD_SHOTS.map((shot, i) => (
-          <FadeIn key={shot.key} delay={Math.min(i * 0.08, 0.24)} y={30}>
-            <figure>
-              <div className="overflow-hidden rounded-3xl border border-[#D7E2EA]/15">
-                <Image
-                  src={shot.image}
-                  alt={ads.shots[shot.key]}
-                  sizes="(min-width: 1024px) 1024px, 100vw"
-                  className="w-full h-auto"
-                />
-              </div>
-              <figcaption className="mt-3 text-[#D7E2EA]/60 font-light text-center text-xs sm:text-sm">
-                {ads.shots[shot.key]}
-              </figcaption>
-            </figure>
-          </FadeIn>
-        ))}
-      </div>
-
-      <p className="mt-8 sm:mt-10 text-center text-[#D7E2EA]/40 font-light uppercase tracking-widest text-xs">
-        {ads.note}
-      </p>
-
-      {/* anonymized client testimonials (found via Google) */}
+      {/* 1. headline metrics */}
       <div className="max-w-5xl mx-auto mt-16 sm:mt-20 md:mt-24">
-        <h2 className="text-[#D7E2EA]/60 font-medium uppercase tracking-widest text-xs sm:text-sm text-center">
-          {ads.testimonials.heading}
-        </h2>
-        <ul className="mt-8 sm:mt-10 grid sm:grid-cols-2 gap-4 sm:gap-6">
-          {ads.testimonials.items.map((item) => (
-            <FadeIn as="li" key={item.quote} y={24} className="rounded-3xl border border-[#D7E2EA]/15 p-6 sm:p-8">
-              <p
-                className="text-[#D7E2EA] font-light leading-relaxed"
-                style={{ fontSize: 'clamp(1.1rem, 2vw, 1.6rem)' }}
+        <FadeIn y={20}>
+          <Eyebrow as={blockTag}>{ads.sections.metrics}</Eyebrow>
+        </FadeIn>
+
+        <dl className="mt-8 sm:mt-10 grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+          {ads.stats.map((stat, i) => (
+            <FadeIn
+              key={stat.label}
+              delay={i * 0.08}
+              y={24}
+              lift
+              className={`${CARD} flex flex-col-reverse px-5 py-6 sm:px-6 sm:py-7 text-center`}
+            >
+              <dt className="mt-2 text-[#D7E2EA]/60 font-light uppercase tracking-widest text-[0.65rem] sm:text-xs">
+                {stat.label}
+              </dt>
+              <dd
+                className="hero-heading font-black leading-none"
+                style={{ fontSize: 'clamp(2.2rem, 5vw, 4rem)' }}
               >
-                “{item.quote}”
-              </p>
-              <p className="mt-4 text-[#D7E2EA]/50 font-light uppercase tracking-widest text-xs">
-                {item.who}
-              </p>
+                <CountUp value={stat.value} />
+              </dd>
+            </FadeIn>
+          ))}
+        </dl>
+
+        <ul className="mt-4 flex flex-wrap justify-center gap-2 sm:gap-3">
+          {ads.highlights.map((item, i) => (
+            <FadeIn
+              as="li"
+              key={item}
+              delay={0.3 + i * 0.08}
+              y={12}
+              className="rounded-full border border-[#D7E2EA]/20 px-4 py-2 text-[#D7E2EA]/85 text-xs sm:text-sm font-medium"
+            >
+              {item}
             </FadeIn>
           ))}
         </ul>
-
-        {/* the real (redacted) WhatsApp chats behind the quotes */}
-        <div className="mt-8 sm:mt-10 grid sm:grid-cols-2 gap-6 sm:gap-8 justify-items-center">
-          {AD_PROOF.map((proof) => (
-            <FadeIn key={proof.key} y={24} className="w-full max-w-[340px]">
-              <figure>
-                <div className="overflow-hidden rounded-3xl border border-[#D7E2EA]/15">
-                  <Image
-                    src={proof.image}
-                    alt={ads.proof[proof.key]}
-                    sizes="(min-width: 640px) 340px, 100vw"
-                    className="w-full h-auto"
-                  />
-                </div>
-                <figcaption className="mt-3 text-[#D7E2EA]/50 font-light text-center text-xs sm:text-sm">
-                  {ads.proof[proof.key]}
-                </figcaption>
-              </figure>
-            </FadeIn>
-          ))}
-        </div>
       </div>
 
-      <FadeIn delay={0.1} y={20} className="mt-12 sm:mt-14 flex justify-center">
+      {/* 2. dashboard screenshots behind tabs */}
+      <div className="max-w-5xl mx-auto mt-20 sm:mt-24 md:mt-28">
+        <FadeIn y={20}>
+          <Eyebrow as={blockTag}>{ads.sections.dashboard}</Eyebrow>
+        </FadeIn>
+
+        <FadeIn y={24} delay={0.1} className="mt-8 sm:mt-10">
+          <DashboardTabs
+            label={ads.tabsLabel}
+            tabs={AD_SHOTS.map((shot) => ({
+              key: shot.key,
+              image: shot.image,
+              label: ads.tabs[shot.key],
+              caption: ads.shots[shot.key],
+            }))}
+          />
+        </FadeIn>
+
+        <p className="mt-4 text-center text-[#D7E2EA]/40 font-light uppercase tracking-widest text-xs">
+          {ads.note}
+        </p>
+      </div>
+
+      {/* 3. how clients found us: real (redacted) chats; a snap carousel on phones */}
+      <div className="max-w-5xl mx-auto mt-20 sm:mt-24 md:mt-28">
+        <FadeIn y={20}>
+          <Eyebrow as={blockTag}>{ads.sections.clients}</Eyebrow>
+        </FadeIn>
+
+        <ul className="mt-8 sm:mt-10 -mx-5 px-5 flex gap-4 overflow-x-auto snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:mx-0 md:px-0 md:grid md:grid-cols-3 md:gap-6 md:overflow-visible">
+          {AD_PROOF.map((proof, i) => {
+            const text = ads.testimonials[proof.key]
+            return (
+              <FadeIn
+                as="li"
+                key={proof.key}
+                delay={i * 0.1}
+                y={28}
+                lift
+                className={`${CARD} snap-center shrink-0 w-[78vw] max-w-[340px] md:w-auto md:max-w-none flex flex-col overflow-hidden`}
+              >
+                <div className="relative aspect-[3/4] bg-[#0C0C0C]">
+                  <Image
+                    src={proof.image}
+                    alt={text.caption}
+                    fill
+                    sizes="(min-width: 768px) 320px, 78vw"
+                    className="object-contain object-top"
+                  />
+                </div>
+                <div className="p-5 sm:p-6 border-t border-[#D7E2EA]/10">
+                  <p className="text-[#D7E2EA]/45 font-light text-xs">{text.caption}</p>
+                  <p
+                    className="mt-3 text-[#D7E2EA] font-light leading-relaxed"
+                    style={{ fontSize: 'clamp(1rem, 1.5vw, 1.2rem)' }}
+                  >
+                    “{text.quote}”
+                  </p>
+                  <p className="mt-3 text-[#D7E2EA]/50 font-light uppercase tracking-widest text-xs">
+                    {text.who}
+                  </p>
+                </div>
+              </FadeIn>
+            )
+          })}
+        </ul>
+      </div>
+
+      <FadeIn delay={0.1} y={20} className="mt-16 sm:mt-20 flex justify-center">
         <ContactButton href={WHATSAPP_URL} label={buttons.contact} />
       </FadeIn>
     </section>

@@ -27,6 +27,8 @@ type FadeInProps = {
   duration?: number
   x?: number
   y?: number
+  /** Lift the element a few pixels on hover (cards). */
+  lift?: boolean
   className?: string
   style?: CSSProperties
 }
@@ -38,6 +40,7 @@ export default function FadeIn({
   duration = 0.7,
   x = 0,
   y = 30,
+  lift = false,
   className,
   style,
 }: FadeInProps) {
@@ -49,6 +52,7 @@ export default function FadeIn({
       style={style}
       initial={{ opacity: 0, x, y }}
       whileInView={{ opacity: 1, x: 0, y: 0 }}
+      whileHover={lift ? { y: -6, transition: { duration: 0.25, delay: 0 } } : undefined}
       viewport={{ once: true, margin: '50px', amount: 0 }}
       transition={{ duration, delay, ease: [0.25, 0.1, 0.25, 1] }}
     >
