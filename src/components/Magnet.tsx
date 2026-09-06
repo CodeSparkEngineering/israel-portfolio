@@ -22,9 +22,9 @@ const REST = { x: 0, y: 0 }
 const clamp = (v: number, max: number) => Math.max(-max, Math.min(max, v))
 
 /**
- * Pulls its content toward the pointer. Mouse: only when the cursor is near the
- * element. Touch: follows the finger anywhere on screen while it is down (page
- * scrolling keeps working because the listeners are passive), then springs back.
+ * Pulls its content toward the mouse when the cursor is near the element, and springs
+ * back. Mouse only: on touch devices a scroll is a finger drag, so following the finger
+ * made the element chase the scroll. There the element stays put.
  */
 export default function Magnet({
   children,
@@ -45,16 +45,17 @@ export default function Magnet({
     if (disabled) return
     // Honor the "reduce motion" system setting: the element simply stays put.
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    // Skip devices without a fine pointer (phones/tablets), where a drag is a scroll.
+    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return
 
-    const pull =(clientX: number, clientY: number, requireNear: boolean) => {
+    const pull = (clientX: number, clientY: number) => {
       const el = ref.current
       if (!el) return
       const rect = el.getBoundingClientRect()
       const distX = clientX - (rect.left + rect.width / 2)
       const distY = clientY - (rect.top + rect.height / 2)
       const near =
-        !requireNear ||
-        (Math.abs(distX) < rect.width / 2 + padding && Math.abs(distY) < rect.height / 2 + padding)
+        Math.abs(distX) < rect.width / 2 + padding && Math.abs(distY) < rect.height / 2 + padding
 
       if (near) {
         setActive(true)
@@ -65,27 +66,11 @@ export default function Magnet({
       }
     }
 
-    const onMouseMove = (e: MouseEvent) => pull(e.clientX, e.clientY, true)
-    const onTouchMove = (e: TouchEvent) => {
-      const t = e.touches[0]
-      if (t) pull(t.clientX, t.clientY, false)
-    }
-    const onTouchEnd = () => {
-      setActive(false)
-      setOffset(REST)
-    }
+    const onMouseMove = (e: MouseEvent) => pull(e.clientX, e.clientY)
 
     window.addEventListener('mousemove', onMouseMove, { passive: true })
-    window.addEventListener('touchstart', onTouchMove, { passive: true })
-    window.addEventListener('touchmove', onTouchMove, { passive: true })
-    window.addEventListener('touchend', onTouchEnd, { passive: true })
-    window.addEventListener('touchcancel', onTouchEnd, { passive: true })
     return () => {
       window.removeEventListener('mousemove', onMouseMove)
-      window.removeEventListener('touchstart', onTouchMove)
-      window.removeEventListener('touchmove', onTouchMove)
-      window.removeEventListener('touchend', onTouchEnd)
-      window.removeEventListener('touchcancel', onTouchEnd)
       // Reset so a re-enabled magnet does not resume from a stale offset.
       setActive(false)
       setOffset(REST)
