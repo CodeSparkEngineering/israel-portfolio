@@ -61,8 +61,9 @@ export default function HeroSection({ locale, dict }: HeroSectionProps) {
         className="relative mx-auto mt-6 w-[300px] z-10 sm:absolute sm:mt-0 sm:left-1/2 sm:-translate-x-1/2 sm:bottom-0 sm:w-[360px] md:w-[440px] lg:w-[520px]"
       >
         <Magnet
-          padding={150}
-          strength={3}
+          padding={200}
+          strength={2.2}
+          maxOffset={90}
           activeTransition="transform 0.3s ease-out"
           inactiveTransition="transform 0.6s ease-in-out"
         >
