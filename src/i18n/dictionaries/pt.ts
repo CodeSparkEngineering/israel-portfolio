@@ -228,6 +228,17 @@ const pt: Dictionary = {
       searchTerms: 'Termos de busca que trouxeram cliques e o anúncio exibido.',
       locationBudget: 'Segmentação por Portugal e orçamento diário controlado.',
     },
+    testimonials: {
+      heading: 'Clientes que nos encontraram no Google',
+      items: [
+        { quote: 'Pelo Google, estava em primeiro lugar.', who: 'Cliente · Portugal' },
+        { quote: 'Encontrei a vossa empresa pelo Google.', who: 'Cliente · Portugal' },
+      ],
+    },
+    proof: {
+      google: 'Conversa real: o cliente respondeu que nos encontrou pelo Google, em primeiro lugar.',
+      found: 'Outro cliente respondeu que chegou pelo Google.',
+    },
   },
   faq: {
     title: 'FAQ',

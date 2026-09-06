@@ -2,7 +2,7 @@ import Image from 'next/image'
 import FadeIn from '@/components/FadeIn'
 import ContactButton from '@/components/ContactButton'
 import { WHATSAPP_URL } from '@/data/contact'
-import { AD_SHOTS } from '@/data/ads'
+import { AD_PROOF, AD_SHOTS } from '@/data/ads'
 import type { Dictionary } from '@/i18n/get-dictionary'
 
 type AdsSectionProps = {
@@ -107,6 +107,49 @@ export default function AdsSection({ dict, headingTag = 'h2' }: AdsSectionProps)
       <p className="mt-8 sm:mt-10 text-center text-[#D7E2EA]/40 font-light uppercase tracking-widest text-xs">
         {ads.note}
       </p>
+
+      {/* anonymized client testimonials (found via Google) */}
+      <div className="max-w-5xl mx-auto mt-16 sm:mt-20 md:mt-24">
+        <h2 className="text-[#D7E2EA]/60 font-medium uppercase tracking-widest text-xs sm:text-sm text-center">
+          {ads.testimonials.heading}
+        </h2>
+        <ul className="mt-8 sm:mt-10 grid sm:grid-cols-2 gap-4 sm:gap-6">
+          {ads.testimonials.items.map((item) => (
+            <FadeIn as="li" key={item.quote} y={24} className="rounded-3xl border border-[#D7E2EA]/15 p-6 sm:p-8">
+              <p
+                className="text-[#D7E2EA] font-light leading-relaxed"
+                style={{ fontSize: 'clamp(1.1rem, 2vw, 1.6rem)' }}
+              >
+                “{item.quote}”
+              </p>
+              <p className="mt-4 text-[#D7E2EA]/50 font-light uppercase tracking-widest text-xs">
+                {item.who}
+              </p>
+            </FadeIn>
+          ))}
+        </ul>
+
+        {/* the real (redacted) WhatsApp chats behind the quotes */}
+        <div className="mt-8 sm:mt-10 grid sm:grid-cols-2 gap-6 sm:gap-8 justify-items-center">
+          {AD_PROOF.map((proof) => (
+            <FadeIn key={proof.key} y={24} className="w-full max-w-[340px]">
+              <figure>
+                <div className="overflow-hidden rounded-3xl border border-[#D7E2EA]/15">
+                  <Image
+                    src={proof.image}
+                    alt={ads.proof[proof.key]}
+                    sizes="(min-width: 640px) 340px, 100vw"
+                    className="w-full h-auto"
+                  />
+                </div>
+                <figcaption className="mt-3 text-[#D7E2EA]/50 font-light text-center text-xs sm:text-sm">
+                  {ads.proof[proof.key]}
+                </figcaption>
+              </figure>
+            </FadeIn>
+          ))}
+        </div>
+      </div>
 
       <FadeIn delay={0.1} y={20} className="mt-12 sm:mt-14 flex justify-center">
         <ContactButton href={WHATSAPP_URL} label={buttons.contact} />

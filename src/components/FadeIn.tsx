@@ -14,6 +14,7 @@ const MOTION_TAGS = {
   h3: motion.h3,
   p: motion.p,
   span: motion.span,
+  li: motion.li,
 } as const
 
 export type FadeInTag = keyof typeof MOTION_TAGS
