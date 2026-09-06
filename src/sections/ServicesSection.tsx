@@ -1,10 +1,13 @@
+import Link from 'next/link'
 import FadeIn from '@/components/FadeIn'
 import { GOOGLE_SKILLS_BADGES, GOOGLE_SKILLS_URL } from '@/data/credentials'
+import { SECURITY_PATH } from '@/data/security'
+import type { Locale } from '@/i18n/config'
 import type { Dictionary } from '@/i18n/get-dictionary'
 
-type ServicesSectionProps = { dict: Dictionary }
+type ServicesSectionProps = { locale: Locale; dict: Dictionary }
 
-export default function ServicesSection({ dict }: ServicesSectionProps) {
+export default function ServicesSection({ locale, dict }: ServicesSectionProps) {
   const { services, credentials } = dict
 
   return (
@@ -35,8 +38,9 @@ export default function ServicesSection({ dict }: ServicesSectionProps) {
               borderBottom: '1px solid rgba(12, 12, 12, 0.15)',
             }}
           >
+            {/* min-w: "01" is narrower than "02", so every title starts at the same x */}
             <span
-              className="font-black leading-none shrink-0"
+              className="font-black leading-none shrink-0 min-w-[1.3em]"
               style={{ color: '#0C0C0C', fontSize: 'clamp(3rem, 10vw, 140px)' }}
             >
               {service.number}
@@ -59,6 +63,16 @@ export default function ServicesSection({ dict }: ServicesSectionProps) {
               >
                 {service.description}
               </p>
+              {/* service 07 links to the anonymized security case studies */}
+              {service.number === services.examples.number && (
+                <Link
+                  href={`/${locale}${SECURITY_PATH}`}
+                  className="mt-1 py-3 -mb-3 inline-block w-fit font-medium uppercase tracking-widest text-xs sm:text-sm underline underline-offset-4 transition-opacity duration-200 hover:opacity-60"
+                  style={{ color: '#0C0C0C' }}
+                >
+                  {services.examples.label} →
+                </Link>
+              )}
             </div>
           </FadeIn>
         ))}
@@ -93,7 +107,7 @@ export default function ServicesSection({ dict }: ServicesSectionProps) {
           href={GOOGLE_SKILLS_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-6 inline-block font-medium uppercase tracking-widest text-xs sm:text-sm underline underline-offset-4 transition-opacity duration-200 hover:opacity-60"
+          className="mt-3 py-3 -mb-3 inline-block font-medium uppercase tracking-widest text-xs sm:text-sm underline underline-offset-4 transition-opacity duration-200 hover:opacity-60"
           style={{ color: '#0C0C0C' }}
         >
           {credentials.link} →

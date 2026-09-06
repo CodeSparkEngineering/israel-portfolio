@@ -94,6 +94,8 @@ const en = {
           'Deployments on Google Cloud (GCP), secure networks, access control, backups and security reviews for your systems.',
       },
     ],
+    /** "See examples" link shown under one service (by number); it opens the security page. */
+    examples: { number: '07', label: 'See examples of security assessments' },
   },
   credentials: {
     title: 'Google Cloud training & badges',
@@ -117,6 +119,82 @@ const en = {
         category: 'Own company · Software house',
         name: 'CodeSpark',
         alt: 'CodeSpark website, custom websites, apps and AI agents',
+      },
+    },
+  },
+  security: {
+    title: 'Security',
+    intro:
+      'Authorized external security assessments of live SaaS platforms: reconnaissance, attack-surface mapping and vulnerability analysis, without credentials and without destructive actions. Each one ends in a report with findings by severity, prioritized fixes and a roadmap for the next phases.',
+    note: 'Names, domains and identifiers are anonymized.',
+    meta: {
+      title: 'Security assessments | Israel Vieira',
+      description:
+        'Anonymized case studies of authorized external security assessments of SaaS platforms: attack-surface mapping, access control, OAuth2, e-mail and DNS hygiene, with findings by severity and prioritized fixes.',
+    },
+    back: 'Back to services',
+    labels: {
+      tested: 'What was tested',
+      safe: 'Confirmed secure',
+      delivered: 'Delivered',
+      report: 'Sample report (PDF)',
+    },
+    cases: {
+      marketplaces: {
+        category: 'Client · External assessment · Brazil',
+        name: 'Marketplace sales SaaS',
+        summary:
+          'Web platform with customer dashboard, .NET API, self-hosted helpdesk, automation and Stripe billing, behind Cloudflare.',
+        severity: '1 high (authenticated only) · 8 low · 4 informational',
+        stats: [
+          { value: '6', label: 'subdomains' },
+          { value: '91', label: 'API endpoints mapped' },
+          { value: '13', label: 'findings' },
+          { value: '0', label: 'critical' },
+        ],
+        tested: [
+          'HTTP, DNS and WAF fingerprinting and subdomain enumeration',
+          'API surface mapped from the public OpenAPI specification',
+          'Access control on every GET endpoint, with and without valid IDs',
+          'CORS, known CVEs in the helpdesk version, dangling DNS and subdomain takeover',
+          'Automated scan with 11,204 nuclei templates',
+        ],
+        safe: [
+          'No unauthenticated IDOR: customer, billing and order data protected',
+          'No secrets leaked in the source code',
+          'CORS does not reflect malicious origins',
+          'WAF active and origin IP hidden',
+        ],
+        delivered:
+          '6-page report with a known SQL injection in the helpdesk flagged for urgent verification, 8 hardening fixes (DMARC, HSTS, headers, Swagger, dangling DNS) and a 5-phase roadmap.',
+      },
+      construction: {
+        category: 'Client · External assessment · Brazil',
+        name: 'Construction management SaaS with AI agent',
+        summary:
+          'Next.js app, Fastify API, AI agent backend and a Model Context Protocol server with 148 tools behind OAuth2.',
+        severity: '0 critical · 0 high · 1 medium · 2 low · 3 informational',
+        stats: [
+          { value: '5', label: 'subdomains' },
+          { value: '148', label: 'MCP tools' },
+          { value: '6', label: 'findings' },
+          { value: '0', label: 'critical or high' },
+        ],
+        tested: [
+          'Route discovery and JavaScript bundle mining for routes and secrets',
+          'Unauthenticated access control on every resource endpoint',
+          'OAuth2 flow of the MCP server: redirect_uri, PKCE and dynamic client registration',
+          'Error handling, user enumeration and brute-force protection',
+          'E-mail and DNS hygiene: SPF, DKIM and DMARC',
+        ],
+        safe: [
+          'Every resource endpoint requires authentication',
+          'CORS allowlist and OAuth redirect_uri allowlist enforced',
+          'Strict CSP, X-Frame-Options and HSTS preload on the app',
+          'Login rate limiting, no secrets in the frontend bundles, TLS 1.2 and 1.3',
+        ],
+        delivered:
+          '6-page report with a DMARC and SPF fix to stop e-mail spoofing, PKCE hardening, and a roadmap covering multi-tenant IDOR, per-tool MCP authorization and prompt injection in the AI agent.',
       },
     },
   },
@@ -145,7 +223,7 @@ const en = {
       },
       {
         q: 'Do you have Google Cloud and cybersecurity experience?',
-        a: 'Yes. I hold Google Skills badges in Cloud Engineering, Build a Secure Google Cloud Network, Implementing Cloud Load Balancing, Set Up an App Dev Environment on Google Cloud and Introduction to Security in the World of AI, and I apply secure networking, IAM and backup practices to the systems I deploy.',
+        a: 'Yes. I hold Google Skills badges in Cloud Engineering, Build a Secure Google Cloud Network, Implementing Cloud Load Balancing, Set Up an App Dev Environment on Google Cloud and Introduction to Security in the World of AI, and I apply secure networking, IAM and backup practices to the systems I deploy. I also run authorized external security assessments of web applications and APIs, delivered as a report with findings by severity and prioritized fixes.',
       },
       {
         q: 'Where are you based and how do we start?',

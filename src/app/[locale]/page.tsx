@@ -26,7 +26,7 @@ export default async function HomePage({ params }: Props) {
       <HeroSection locale={locale} dict={dict} />
       <MarqueeSection />
       <AboutSection dict={dict} />
-      <ServicesSection dict={dict} />
+      <ServicesSection locale={locale} dict={dict} />
       <ProjectsSection projects={dict.projects} liveLabel={dict.buttons.live} />
       <FaqSection dict={dict} />
       <ContactSection locale={locale} dict={dict} />

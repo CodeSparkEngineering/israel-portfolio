@@ -92,6 +92,7 @@ const pt: Dictionary = {
           'Implantação no Google Cloud (GCP), redes seguras, controle de acesso, backups e revisão de segurança dos seus sistemas.',
       },
     ],
+    examples: { number: '07', label: 'Ver exemplos de avaliações de segurança' },
   },
   credentials: {
     title: 'Formação e badges Google Cloud',
@@ -115,6 +116,82 @@ const pt: Dictionary = {
         category: 'Empresa própria · Software house',
         name: 'CodeSpark',
         alt: 'Site da CodeSpark, sites, aplicativos e agentes de IA sob medida',
+      },
+    },
+  },
+  security: {
+    title: 'Segurança',
+    intro:
+      'Avaliações externas de segurança autorizadas em plataformas SaaS em produção: reconhecimento, mapeamento da superfície de ataque e análise de vulnerabilidades, sem credenciais e sem ações destrutivas. Cada uma termina num relatório com achados por severidade, correções priorizadas e roadmap das próximas fases.',
+    note: 'Nomes, domínios e identificadores foram anonimizados.',
+    meta: {
+      title: 'Avaliações de segurança | Israel Vieira',
+      description:
+        'Estudos de caso anonimizados de avaliações externas de segurança autorizadas em plataformas SaaS: mapeamento da superfície de ataque, controle de acesso, OAuth2, higiene de e-mail e DNS, com achados por severidade e correções priorizadas.',
+    },
+    back: 'Voltar aos serviços',
+    labels: {
+      tested: 'O que foi testado',
+      safe: 'Confirmado seguro',
+      delivered: 'Entrega',
+      report: 'Relatório de exemplo (PDF)',
+    },
+    cases: {
+      marketplaces: {
+        category: 'Cliente · Avaliação externa · Brasil',
+        name: 'SaaS de vendas em marketplaces',
+        summary:
+          'Plataforma web com dashboard do cliente, API .NET, helpdesk self-hosted, automação e cobrança via Stripe, atrás do Cloudflare.',
+        severity: '1 alto (só autenticado) · 8 baixos · 4 informativos',
+        stats: [
+          { value: '6', label: 'subdomínios' },
+          { value: '91', label: 'endpoints de API mapeados' },
+          { value: '13', label: 'achados' },
+          { value: '0', label: 'críticos' },
+        ],
+        tested: [
+          'Fingerprint de HTTP, DNS e WAF e enumeração de subdomínios',
+          'Superfície da API mapeada a partir da especificação OpenAPI pública',
+          'Controle de acesso em todos os endpoints GET, com e sem IDs válidos',
+          'CORS, CVEs conhecidas na versão do helpdesk, DNS pendente e subdomain takeover',
+          'Varredura automatizada com 11.204 templates do nuclei',
+        ],
+        safe: [
+          'Sem IDOR não autenticado: dados de clientes, cobrança e pedidos protegidos',
+          'Nenhum segredo vazado no código-fonte',
+          'CORS não reflete origens maliciosas',
+          'WAF ativo e IP de origem oculto',
+        ],
+        delivered:
+          'Relatório de 6 páginas com uma SQL injection conhecida no helpdesk sinalizada para verificação urgente, 8 correções de hardening (DMARC, HSTS, headers, Swagger, DNS pendente) e roadmap em 5 fases.',
+      },
+      construction: {
+        category: 'Cliente · Avaliação externa · Brasil',
+        name: 'SaaS de gestão de obras com agente de IA',
+        summary:
+          'App Next.js, API Fastify, backend do agente de IA e servidor Model Context Protocol com 148 ferramentas atrás de OAuth2.',
+        severity: '0 críticos · 0 altos · 1 médio · 2 baixos · 3 informativos',
+        stats: [
+          { value: '5', label: 'subdomínios' },
+          { value: '148', label: 'ferramentas MCP' },
+          { value: '6', label: 'achados' },
+          { value: '0', label: 'críticos ou altos' },
+        ],
+        tested: [
+          'Descoberta de rotas e mineração dos bundles JavaScript em busca de rotas e segredos',
+          'Controle de acesso não autenticado em todos os endpoints de recurso',
+          'Fluxo OAuth2 do servidor MCP: redirect_uri, PKCE e registro dinâmico de clientes',
+          'Tratamento de erros, enumeração de usuários e proteção contra força bruta',
+          'Higiene de e-mail e DNS: SPF, DKIM e DMARC',
+        ],
+        safe: [
+          'Todos os endpoints de recurso exigem autenticação',
+          'Allowlist de CORS e de redirect_uri do OAuth aplicadas',
+          'CSP restritiva, X-Frame-Options e HSTS preload no app',
+          'Rate limiting no login, sem segredos nos bundles do frontend, TLS 1.2 e 1.3',
+        ],
+        delivered:
+          'Relatório de 6 páginas com correção de DMARC e SPF para impedir spoofing de e-mail, hardening do PKCE e roadmap cobrindo IDOR multi-tenant, autorização por ferramenta no MCP e injeção de prompt no agente de IA.',
       },
     },
   },
@@ -143,7 +220,7 @@ const pt: Dictionary = {
       },
       {
         q: 'Você tem experiência com Google Cloud e cibersegurança?',
-        a: 'Sim. Tenho badges do Google Skills em Cloud Engineering, Build a Secure Google Cloud Network, Implementing Cloud Load Balancing, Set Up an App Dev Environment on Google Cloud e Introduction to Security in the World of AI, e aplico práticas de rede segura, IAM e backup nos sistemas que implanto.',
+        a: 'Sim. Tenho badges do Google Skills em Cloud Engineering, Build a Secure Google Cloud Network, Implementing Cloud Load Balancing, Set Up an App Dev Environment on Google Cloud e Introduction to Security in the World of AI, e aplico práticas de rede segura, IAM e backup nos sistemas que implanto. Também realizo avaliações externas de segurança autorizadas em aplicações web e APIs, entregues em relatório com achados por severidade e correções priorizadas.',
       },
       {
         q: 'Onde você está e como começamos?',
