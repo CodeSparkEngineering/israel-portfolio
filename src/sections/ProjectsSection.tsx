@@ -45,7 +45,7 @@ function ProjectCard({ project, text, liveLabel, index, total, progress }: CardP
         <div className="flex flex-wrap items-center justify-between gap-4 mb-4 sm:mb-6 md:mb-8">
           <div className="flex items-center gap-4 sm:gap-6 md:gap-8">
             <span
-              className="font-black leading-none text-[#D7E2EA]"
+              className="font-black leading-none text-[#D7E2EA] min-w-[1.3em]"
               style={{ fontSize: 'clamp(3rem, 10vw, 140px)' }}
             >
               {project.number}

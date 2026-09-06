@@ -2,7 +2,7 @@ import type { Locale } from '@/i18n/config'
 import type { Dictionary } from '@/i18n/get-dictionary'
 import { PROJECTS } from '@/data/projects'
 import { GOOGLE_SKILLS_BADGES, GOOGLE_SKILLS_URL } from '@/data/credentials'
-import { WHATSAPP_URL } from '@/data/contact'
+import { SOCIAL_LINKS, WHATSAPP_URL } from '@/data/contact'
 import { PERSON_NAME, SITE_URL } from './site'
 
 const LANGUAGE_NAMES: Record<Locale, string> = {
@@ -33,7 +33,11 @@ export function buildJsonLd(locale: Locale, dict: Dictionary) {
     knowsAbout: dict.meta.keywords,
     knowsLanguage: Object.values(LANGUAGE_NAMES),
     address: { '@type': 'PostalAddress', addressCountry: 'PT' },
-    sameAs: [GOOGLE_SKILLS_URL, ...PROJECTS.filter((p) => p.key !== 'prontogo').map((p) => p.url)],
+    sameAs: [
+      GOOGLE_SKILLS_URL,
+      ...SOCIAL_LINKS.map((link) => link.href),
+      ...PROJECTS.filter((p) => p.key !== 'prontogo').map((p) => p.url),
+    ],
     hasCredential: GOOGLE_SKILLS_BADGES.map((badge) => ({
       '@type': 'EducationalOccupationalCredential',
       name: badge.name,

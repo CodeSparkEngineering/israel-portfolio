@@ -4,9 +4,10 @@ import AnimatedText from '@/components/AnimatedText'
 import ContactButton from '@/components/ContactButton'
 import { WHATSAPP_URL } from '@/data/contact'
 import type { Dictionary } from '@/i18n/get-dictionary'
-
-const BASE =
-  'https://shrug-person-78902957.figma.site/_components/v2/ebb2b8f25d8e24d5f0a5ca8af4c950de81aa2fd7'
+import moon from '@/assets/props/moon.png'
+import smiley from '@/assets/props/smiley.png'
+import lego from '@/assets/props/lego.png'
+import cursor from '@/assets/props/cursor.png'
 
 type AboutSectionProps = { dict: Dictionary }
 
@@ -28,10 +29,8 @@ export default function AboutSection({ dict }: AboutSectionProps) {
         className="absolute top-[4%] left-[1%] sm:left-[2%] md:left-[4%] w-[120px] sm:w-[160px] md:w-[210px] pointer-events-none"
       >
         <Image
-          src={`${BASE}/moon_icon.11395d36.png`}
+          src={moon}
           alt=""
-          width={714}
-          height={714}
           sizes="(min-width: 768px) 210px, (min-width: 640px) 160px, 120px"
           className="w-full h-auto"
         />
@@ -45,10 +44,8 @@ export default function AboutSection({ dict }: AboutSectionProps) {
         className="absolute bottom-[8%] left-[3%] sm:left-[6%] md:left-[10%] w-[100px] sm:w-[140px] md:w-[180px] pointer-events-none"
       >
         <Image
-          src={`${BASE}/p59_1.4659672e.png`}
+          src={smiley}
           alt=""
-          width={420}
-          height={446}
           sizes="(min-width: 768px) 180px, (min-width: 640px) 140px, 100px"
           className="w-full h-auto"
         />
@@ -62,10 +59,8 @@ export default function AboutSection({ dict }: AboutSectionProps) {
         className="absolute top-[4%] right-[1%] sm:right-[2%] md:right-[4%] w-[120px] sm:w-[160px] md:w-[210px] pointer-events-none"
       >
         <Image
-          src={`${BASE}/lego_icon-1.703bb594.png`}
+          src={lego}
           alt=""
-          width={708}
-          height={862}
           sizes="(min-width: 768px) 210px, (min-width: 640px) 160px, 120px"
           className="w-full h-auto"
         />
@@ -79,10 +74,8 @@ export default function AboutSection({ dict }: AboutSectionProps) {
         className="absolute bottom-[8%] right-[3%] sm:right-[6%] md:right-[10%] w-[130px] sm:w-[170px] md:w-[220px] pointer-events-none"
       >
         <Image
-          src={`${BASE}/Group_134-1.2e04f3ce.png`}
+          src={cursor}
           alt=""
-          width={688}
-          height={676}
           sizes="(min-width: 768px) 220px, (min-width: 640px) 170px, 130px"
           className="w-full h-auto"
         />

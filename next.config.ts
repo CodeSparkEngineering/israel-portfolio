@@ -12,12 +12,6 @@ const nextConfig: NextConfig = {
       },
     ]
   },
-  images: {
-    remotePatterns: [
-      // Decorative 3D props (About section)
-      { protocol: 'https', hostname: 'shrug-person-78902957.figma.site' },
-    ],
-  },
 }
 
 export default nextConfig

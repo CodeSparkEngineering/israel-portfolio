@@ -43,8 +43,10 @@ export default function Magnet({
 
   useEffect(() => {
     if (disabled) return
+    // Honor the "reduce motion" system setting: the element simply stays put.
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
-    const pull = (clientX: number, clientY: number, requireNear: boolean) => {
+    const pull =(clientX: number, clientY: number, requireNear: boolean) => {
       const el = ref.current
       if (!el) return
       const rect = el.getBoundingClientRect()

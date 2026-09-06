@@ -2,14 +2,17 @@ import type { Metadata, Viewport } from 'next'
 import type { ReactNode } from 'react'
 import { Kanit } from 'next/font/google'
 import { notFound } from 'next/navigation'
+import { Analytics } from '@vercel/analytics/next'
+import MotionProvider from '@/components/MotionProvider'
 import { isLocale, locales, ogLocales } from '@/i18n/config'
 import { getDictionary } from '@/i18n/get-dictionary'
 import { PERSON_NAME, SITE_URL } from '@/seo/site'
 import '@/app/globals.css'
 
+// Only the weights used by the site: light (300), medium (500) and black (900).
 const kanit = Kanit({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '900'],
+  weight: ['300', '500', '900'],
   variable: '--font-kanit',
   display: 'swap',
 })
@@ -72,7 +75,10 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} className={kanit.variable}>
-      <body>{children}</body>
+      <body>
+        <MotionProvider>{children}</MotionProvider>
+        <Analytics />
+      </body>
     </html>
   )
 }

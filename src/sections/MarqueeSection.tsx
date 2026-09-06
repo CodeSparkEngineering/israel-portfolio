@@ -25,7 +25,6 @@ const GIFS = [
   'https://motionsites.ai/assets/hero-new-era-preview-CocuDUm9.gif',
   'https://motionsites.ai/assets/hero-wealth-preview-B70idl_u.gif',
   'https://motionsites.ai/assets/hero-luminex-preview-CxOP7ce6.gif',
-  'https://motionsites.ai/assets/hero-celestia-preview-0yO3jXO8.gif',
 ]
 
 const ROW_ONE = GIFS.slice(0, 11)
@@ -90,14 +89,18 @@ export default function MarqueeSection() {
   const [offset, setOffset] = useState(0)
 
   useEffect(() => {
+    // "Reduce motion": no parallax, both rows sit at their natural position (dragging still works).
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
     const update = () => {
       const el = sectionRef.current
       if (!el) return
       const sectionTop = el.offsetTop
-      setOffset((window.scrollY - sectionTop + window.innerHeight) * 0.3)
+      setOffset(reduced ? 200 : (window.scrollY - sectionTop + window.innerHeight) * 0.3)
     }
 
     update()
+    if (reduced) return
     window.addEventListener('scroll', update, { passive: true })
     window.addEventListener('resize', update)
     return () => {
